@@ -77,7 +77,7 @@ namespace RationalNumber
                 num.Sign = 1;
             num.IntPart = num.Sign * int.Parse(words[0]);
             num.Numerator = int.Parse(words[1]);
-            num.Denominator = words[1].Length * 10;
+            num.Denominator = (int) Math.Pow(10, words[1].Length);
             return num;
         }
 
@@ -86,16 +86,17 @@ namespace RationalNumber
             double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double) ob1.Denominator;
             double ob2d = ((ob2.Denominator * ob2.IntPart + ob2.Numerator) * ob2.Sign) / (double)ob2.Denominator;
             double obd = ob1d + ob2d;
-            Fraction num = Fraction.Parse(obd.ToString("##.###"));
+            Fraction num = Fraction.Parse(obd.ToString("##.#######"));
             num.GetMixedView();
             return num;
         }
 
         public static Fraction operator +(Fraction ob1, int a)
         {
+            Fraction ob2 = new Fraction(a>0?1:-1,a,0,1);
             double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
             double obd = ob1d + a;
-            Fraction num = Fraction.Parse(obd.ToString("##.###"));
+            Fraction num = Fraction.Parse(obd.ToString("##.########"));
             num.GetMixedView();
             return num;
         }
@@ -126,6 +127,20 @@ namespace RationalNumber
             return a + -ob1;
         }
 
+        public static Fraction operator *(Fraction ob1, Fraction ob2)
+        {
+            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
+            double ob2d = ((ob2.Denominator * ob2.IntPart + ob2.Numerator) * ob2.Sign) / (double)ob2.Denominator;
+            double obd = ob1d * ob2d;
+            Fraction num = Fraction.Parse(obd.ToString("##.########"));
+            num.GetMixedView();
+            return num;
+        }
+
+        public static Fraction operator *(Fraction ob1, int a)
+        {
+
+        }
 
         public static implicit operator string(Fraction ob)
         {
