@@ -19,10 +19,10 @@ namespace RationalNumber
 
         public Fraction()
         {
-            Sign = 0;
+            Sign = 1;
             IntPart = 0;
             Numerator = 0;
-            Denominator = 0;
+            Denominator = 1;
         }
 
         public Fraction(int sign, int intPart, int numerator,int denominator)
@@ -65,6 +65,11 @@ namespace RationalNumber
         public static Fraction Parse(string str)           //string to our obj
         {
             Fraction num = new Fraction();
+            if (str.Length == 0 || str[0]=='0')
+            {
+                return num;
+            }
+
             string[] words = str.Split(new[] {' ', ',', '.'});
             if (words[0][0] == '-')
                 num.Sign = -1;
@@ -100,10 +105,32 @@ namespace RationalNumber
             return ob1 + a;
         }
 
+        public static Fraction operator -(Fraction ob)
+        {
+            ob.Sign *= -1;
+            return ob;
+        }
+
+        public static Fraction operator -(Fraction ob1, Fraction ob2)
+        {
+            return ob1 + -ob2;
+        }
+
+        public static Fraction operator -(Fraction ob1, int a)
+        {
+            return ob1 + -a;
+        }
+
+        public static Fraction operator -(int a, Fraction ob1)
+        {
+            return a + -ob1;
+        }
+
+
         public static implicit operator string(Fraction ob)
         {
             double result = ((ob.Denominator * ob.IntPart + ob.Numerator) * ob.Sign)/ (double)ob.Denominator;
-            return result.ToString("##.###");
+            return result.ToString("#0.###");
         }
     }
 }
