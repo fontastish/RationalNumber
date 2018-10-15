@@ -17,11 +17,11 @@ namespace RationalNumber
             //testParse = Fraction.Parse("-9,9");
             //Console.WriteLine(testParse);
             //Console.WriteLine(num);
-            //Console.WriteLine(testParse - num);
+            //Console.WriteLine(testParse + num);
             //Console.WriteLine(testParse + -9);
             //Console.WriteLine(-9 + testParse);
             //Console.WriteLine(-testParse);
-            Console.WriteLine(num * testParse);
+            Console.WriteLine(2 * testParse);
             Console.ReadKey();
         }
     }

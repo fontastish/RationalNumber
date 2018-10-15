@@ -94,11 +94,7 @@ namespace RationalNumber
         public static Fraction operator +(Fraction ob1, int a)
         {
             Fraction ob2 = new Fraction(a>0?1:-1,a,0,1);
-            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
-            double obd = ob1d + a;
-            Fraction num = Fraction.Parse(obd.ToString("##.########"));
-            num.GetMixedView();
-            return num;
+            return ob1+ob2;
         }
 
         public static Fraction operator +(int a, Fraction ob1)
@@ -139,8 +135,16 @@ namespace RationalNumber
 
         public static Fraction operator *(Fraction ob1, int a)
         {
-
+            Fraction ob2 = new Fraction(a > 0 ? 1 : -1, a, 0, 1);
+            return ob1 * ob2;
         }
+
+        public static Fraction operator *(int a, Fraction ob1)
+        {
+            return ob1 * a;
+        }
+
+
 
         public static implicit operator string(Fraction ob)
         {
