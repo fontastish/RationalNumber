@@ -83,8 +83,8 @@ namespace RationalNumber
 
         public static Fraction operator + (Fraction ob1, Fraction ob2)
         {
-            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double) ob1.Denominator;
-            double ob2d = ((ob2.Denominator * ob2.IntPart + ob2.Numerator) * ob2.Sign) / (double)ob2.Denominator;
+            double ob1d = (double)ob1;
+            double ob2d = (double)ob2;
             double obd = ob1d + ob2d;
             Fraction num = Fraction.Parse(obd.ToString("##.#######"));
             num.GetMixedView();
@@ -125,8 +125,8 @@ namespace RationalNumber
 
         public static Fraction operator *(Fraction ob1, Fraction ob2)
         {
-            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
-            double ob2d = ((ob2.Denominator * ob2.IntPart + ob2.Numerator) * ob2.Sign) / (double)ob2.Denominator;
+            double ob1d = (double)ob1;
+            double ob2d = (double)ob2;
             double obd = ob1d * ob2d;
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
             num.GetMixedView();
@@ -146,8 +146,8 @@ namespace RationalNumber
 
         public static Fraction operator /(Fraction ob1, Fraction ob2)
         {
-            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
-            double ob2d = ((ob2.Denominator * ob2.IntPart + ob2.Numerator) * ob2.Sign) / (double)ob2.Denominator;
+            double ob1d = (double)ob1;
+            double ob2d = (double)ob2;
             double obd = ob1d / ob2d;
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
             num.GetMixedView();
