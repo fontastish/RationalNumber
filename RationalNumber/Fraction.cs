@@ -82,7 +82,9 @@ namespace RationalNumber
 
         public override string ToString()
         {
-            
+            double result = denominator * intPart + numerator * sign;
+            string strout = result.ToString();
+            return strout;
         }
     }
 }
