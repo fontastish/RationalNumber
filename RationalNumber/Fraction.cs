@@ -144,7 +144,32 @@ namespace RationalNumber
             return ob1 * a;
         }
 
+        public static Fraction operator /(Fraction ob1, Fraction ob2)
+        {
+            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
+            double ob2d = ((ob2.Denominator * ob2.IntPart + ob2.Numerator) * ob2.Sign) / (double)ob2.Denominator;
+            double obd = ob1d / ob2d;
+            Fraction num = Fraction.Parse(obd.ToString("##.########"));
+            num.GetMixedView();
+            return num;
+        }
 
+        public static Fraction operator /(Fraction ob1, int a)
+        {
+            Fraction ob2 = new Fraction(a > 0 ? 1 : -1, a, 0, 1);
+            return ob1 / ob2;
+        }
+
+        public static Fraction operator /(int a,Fraction ob1)
+        {
+            Fraction ob2 = new Fraction(a > 0 ? 1 : -1, a, 0, 1);
+            return ob2 / ob1;
+        }
+
+        public static explicit operator double(Fraction ob1)
+        {
+            return ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
+        }
 
         public static implicit operator string(Fraction ob)
         {

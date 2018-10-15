@@ -21,7 +21,7 @@ namespace RationalNumber
             //Console.WriteLine(testParse + -9);
             //Console.WriteLine(-9 + testParse);
             //Console.WriteLine(-testParse);
-            Console.WriteLine(2 * testParse);
+            Console.WriteLine(testParse / num);
             Console.ReadKey();
         }
     }
