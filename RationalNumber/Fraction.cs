@@ -83,9 +83,7 @@ namespace RationalNumber
 
         public static Fraction operator + (Fraction ob1, Fraction ob2)
         {
-            double ob1d = (double)ob1;
-            double ob2d = (double)ob2;
-            double obd = ob1d + ob2d;
+            double obd = (double)ob1 + (double)ob2;
             Fraction num = Fraction.Parse(obd.ToString("##.#######"));
             num.GetMixedView();
             return num;
@@ -125,9 +123,7 @@ namespace RationalNumber
 
         public static Fraction operator *(Fraction ob1, Fraction ob2)
         {
-            double ob1d = (double)ob1;
-            double ob2d = (double)ob2;
-            double obd = ob1d * ob2d;
+            double obd = (double)ob1 * (double)ob2;
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
             num.GetMixedView();
             return num;
@@ -146,9 +142,7 @@ namespace RationalNumber
 
         public static Fraction operator /(Fraction ob1, Fraction ob2)
         {
-            double ob1d = (double)ob1;
-            double ob2d = (double)ob2;
-            double obd = ob1d / ob2d;
+            double obd = (double)ob1 / (double)ob2;
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
             num.GetMixedView();
             return num;
@@ -169,6 +163,36 @@ namespace RationalNumber
         public static explicit operator double(Fraction ob1)
         {
             return ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
+        }
+
+        public static bool operator >(Fraction ob1, Fraction ob2)
+        {
+            return (double) ob1 > (double) ob2;
+        }
+
+        public static bool operator <(Fraction ob1, Fraction ob2)
+        {
+            return (double)ob1 < (double)ob2;
+        }
+
+        public static bool operator >=(Fraction ob1, Fraction ob2)
+        {
+            return (double)ob1 >= (double)ob2;
+        }
+
+        public static bool operator <=(Fraction ob1, Fraction ob2)
+        {
+            return (double)ob1 <= (double)ob2;
+        }
+
+        public static bool operator !=(Fraction ob1, Fraction ob2)
+        {
+            return (double)ob1 != (double)ob2;
+        }
+
+        public static bool operator ==(Fraction ob1, Fraction ob2)
+        {
+            return (double)ob1 == (double)ob2;
         }
 
         public static implicit operator string(Fraction ob)
