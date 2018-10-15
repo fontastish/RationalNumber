@@ -66,22 +66,23 @@ namespace RationalNumber
 
         }
 
-        public static Fraction Parse(string str)
+        public static Fraction Parse(string str)           //string to our obj
         {
             Fraction num = null;
-            if (str[0] == '-')
+            string[] words = str.Split(new[] { ' ', ',' });
+            if (words[0][0] == '0')
                 num.sign = -1;
             else
                 num.sign = 1;
-            for (int i = 0; i < str.Length; i++)
-            {
-                
-            }
+            num.intPart = num.sign * int.Parse(words[0]);
+            num.numerator = int.Parse(words[1]);
+            num.denominator = words[1].Length * 10;
+            return num;
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            
         }
     }
 }
