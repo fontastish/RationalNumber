@@ -64,9 +64,9 @@ namespace RationalNumber
 
         public static Fraction Parse(string str)           //string to our obj
         {
-            Fraction num = null;
-            string[] words = str.Split(new[] { ' ', ',' });
-            if (words[0][0] == '0')
+            Fraction num = new Fraction();
+            string[] words = str.Split(new[] {' ', ',', '.'});
+            if (words[0][0] == '-')
                 num.Sign = -1;
             else
                 num.Sign = 1;
@@ -76,24 +76,34 @@ namespace RationalNumber
             return num;
         }
 
-        //public static Fraction operator + (Fraction ob1, Fraction ob2)
-        //{
-        //    Fraction num;
-        //    num.Sign = ob1.Sign
-        //    return num;
-        //}
+        public static Fraction operator + (Fraction ob1, Fraction ob2)
+        {
+            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double) ob1.Denominator;
+            double ob2d = ((ob2.Denominator * ob2.IntPart + ob2.Numerator) * ob2.Sign) / (double)ob2.Denominator;
+            double obd = ob1d + ob2d;
+            Fraction num = Fraction.Parse(obd.ToString("##.###"));
+            num.GetMixedView();
+            return num;
+        }
 
-        //public static string ToString()
-        //{
-        //    double result = (denominator * intPart + numerator * sign)/;
-        //    string strout = result.ToString();
-        //    return strout;
-        //}
+        public static Fraction operator +(Fraction ob1, int a)
+        {
+            double ob1d = ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
+            double obd = ob1d + a;
+            Fraction num = Fraction.Parse(obd.ToString("##.###"));
+            num.GetMixedView();
+            return num;
+        }
+
+        public static Fraction operator +(int a, Fraction ob1)
+        {
+            return ob1 + a;
+        }
 
         public static implicit operator string(Fraction ob)
         {
             double result = ((ob.Denominator * ob.IntPart + ob.Numerator) * ob.Sign)/ (double)ob.Denominator;
-            return result.ToString("##.000");
+            return result.ToString("##.###");
         }
     }
 }
