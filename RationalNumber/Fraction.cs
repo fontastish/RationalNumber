@@ -78,6 +78,7 @@ namespace RationalNumber
             num.IntPart = num.Sign * int.Parse(words[0]);
             num.Numerator = int.Parse(words[1]);
             num.Denominator = (int) Math.Pow(10, words[1].Length);
+            num.GetMixedView();
             return num;
         }
 
@@ -85,7 +86,6 @@ namespace RationalNumber
         {
             double obd = (double)ob1 + (double)ob2;
             Fraction num = Fraction.Parse(obd.ToString("##.#######"));
-            num.GetMixedView();
             return num;
         }     //operator +
 
@@ -125,7 +125,6 @@ namespace RationalNumber
         {
             double obd = (double)ob1 * (double)ob2;
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
-            num.GetMixedView();
             return num;
         }           // operator *
         
@@ -144,7 +143,6 @@ namespace RationalNumber
         {
             double obd = (double)ob1 / (double)ob2;
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
-            num.GetMixedView();
             return num;
         }           //operator /
 
