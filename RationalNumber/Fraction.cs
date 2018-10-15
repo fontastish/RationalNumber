@@ -87,7 +87,7 @@ namespace RationalNumber
             Fraction num = Fraction.Parse(obd.ToString("##.#######"));
             num.GetMixedView();
             return num;
-        }
+        }     //operator +
 
         public static Fraction operator +(Fraction ob1, int a)
         {
@@ -104,7 +104,7 @@ namespace RationalNumber
         {
             ob.Sign *= -1;
             return ob;
-        }
+        }                       // operator -
 
         public static Fraction operator -(Fraction ob1, Fraction ob2)
         {
@@ -127,8 +127,8 @@ namespace RationalNumber
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
             num.GetMixedView();
             return num;
-        }
-
+        }           // operator *
+        
         public static Fraction operator *(Fraction ob1, int a)
         {
             Fraction ob2 = new Fraction(a > 0 ? 1 : -1, a, 0, 1);
@@ -146,7 +146,7 @@ namespace RationalNumber
             Fraction num = Fraction.Parse(obd.ToString("##.########"));
             num.GetMixedView();
             return num;
-        }
+        }           //operator /
 
         public static Fraction operator /(Fraction ob1, int a)
         {
@@ -163,12 +163,12 @@ namespace RationalNumber
         public static explicit operator double(Fraction ob1)
         {
             return ((ob1.Denominator * ob1.IntPart + ob1.Numerator) * ob1.Sign) / (double)ob1.Denominator;
-        }
+        }                   //to double
 
         public static bool operator >(Fraction ob1, Fraction ob2)
         {
             return (double) ob1 > (double) ob2;
-        }
+        }                                   //comparison
 
         public static bool operator <(Fraction ob1, Fraction ob2)
         {
@@ -199,6 +199,6 @@ namespace RationalNumber
         {
             double result = ((ob.Denominator * ob.IntPart + ob.Numerator) * ob.Sign)/ (double)ob.Denominator;
             return result.ToString("#0.###");
-        }
+        }                       //to string
     }
 }
