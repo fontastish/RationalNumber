@@ -10,7 +10,8 @@ namespace RationalNumber
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Fraction num = new Fraction(-1, 9, 9, 10);
+            Console.WriteLine(num);
             Console.ReadKey();
         }
     }

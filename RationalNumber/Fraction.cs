@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,30 +12,25 @@ namespace RationalNumber
     [SuppressMessage("ReSharper", "CommentTypo")]
     class Fraction
     {
-        private int sign;
-        private int intPart;
-        private int numerator;
-        private int denominator;
-
-        public int Sign { get => sign; set => sign = value; }
-        public int IntPart { get => intPart; set => intPart = value; }
-        public int Numerator { get => numerator; set => numerator = value; }
-        public int Denominator { get => denominator; set => denominator = value; }
+        public int Sign { get; set; }
+        public int IntPart { get; set; }
+        public int Numerator { get; set; }
+        public int Denominator { get; set; }
 
         public Fraction()
         {
-            sign = 0;
-            intPart = 0;
-            numerator = 0;
-            denominator = 0;
+            Sign = 0;
+            IntPart = 0;
+            Numerator = 0;
+            Denominator = 0;
         }
 
         public Fraction(int sign, int intPart, int numerator,int denominator)
         {
-            this.sign = sign;
-            this.intPart = intPart;
-            this.numerator = numerator;
-            this.denominator = denominator;
+            this.Sign = sign;
+            this.IntPart = intPart;
+            this.Numerator = numerator;
+            this.Denominator = denominator;
         }
 
         private void GetMixedView()   // метод преобразование дроби в смешанный вид
@@ -50,8 +46,8 @@ namespace RationalNumber
             {
                 if (Numerator % i == 0 && Denominator % i == 0)
                 {
-                    numerator /= i;
-                    denominator /= i;
+                    Numerator /= i;
+                    Denominator /= i;
                     break;
                 }
             }
@@ -61,8 +57,8 @@ namespace RationalNumber
         private void GetIntPart()   // метод выделения целой части дроби
 
         {
-            intPart += numerator / denominator;
-            numerator = numerator % denominator;
+            IntPart += Numerator / Denominator;
+            Numerator = Numerator % Denominator;
 
         }
 
@@ -71,20 +67,33 @@ namespace RationalNumber
             Fraction num = null;
             string[] words = str.Split(new[] { ' ', ',' });
             if (words[0][0] == '0')
-                num.sign = -1;
+                num.Sign = -1;
             else
-                num.sign = 1;
-            num.intPart = num.sign * int.Parse(words[0]);
-            num.numerator = int.Parse(words[1]);
-            num.denominator = words[1].Length * 10;
+                num.Sign = 1;
+            num.IntPart = num.Sign * int.Parse(words[0]);
+            num.Numerator = int.Parse(words[1]);
+            num.Denominator = words[1].Length * 10;
             return num;
         }
 
-        public override string ToString()
+        //public static Fraction operator + (Fraction ob1, Fraction ob2)
+        //{
+        //    Fraction num;
+        //    num.Sign = ob1.Sign
+        //    return num;
+        //}
+
+        //public static string ToString()
+        //{
+        //    double result = (denominator * intPart + numerator * sign)/;
+        //    string strout = result.ToString();
+        //    return strout;
+        //}
+
+        public static implicit operator string(Fraction ob)
         {
-            double result = denominator * intPart + numerator * sign;
-            string strout = result.ToString();
-            return strout;
+            double result = ((ob.Denominator * ob.IntPart + ob.Numerator) * ob.Sign)/ (double)ob.Denominator;
+            return result.ToString("##.000");
         }
     }
 }
